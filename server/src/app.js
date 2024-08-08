@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const router = require('../src/routes/index');
 const { errorConverter, errorHandler } = require('../src/middlewares/error');
 const AppError = require('./utils/AppError');
+const config = require('./configs/config');
 
 const app = express();
 

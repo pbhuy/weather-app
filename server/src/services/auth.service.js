@@ -18,6 +18,8 @@ const verifyEmail = async (verifyEmailToken) => {
         isVerified: true,
       });
       await email.save();
+    } else if (existedEmail && existedEmail.isVerified === false) {
+      await Email.findOneAndUpdate({ email: existedEmail.email }, { isVerified: true });
     }
   } catch (error) {
     throw new AppError(httpStatus.UNAUTHORIZED, 'Email verification failed');

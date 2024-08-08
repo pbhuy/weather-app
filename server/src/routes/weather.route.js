@@ -4,7 +4,7 @@ const { weatherController } = require('../controllers');
 
 const router = express.Router();
 
-router.get('/', weatherController.getWeatherForCity);
+router.get('/', weatherController.getWeather);
 router.get('/forecast', weatherController.getForecast);
 router.post('/subscribe', weatherController.subscribeWeatherForecast);
 router.post('/unsubscribe', weatherController.unsubscribeWeatherForecast);

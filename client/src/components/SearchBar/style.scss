@@ -1,0 +1,85 @@
+.weather-input {
+  width: 550px;
+  input {
+    width: 100%;
+    height: 46px;
+    outline: none;
+    padding: 0 15px;
+    margin: 10px 0 20px 0;
+    font-size: 1.07rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  .unsubscribe-btn,
+  .subscribe-btn {
+    flex: 1; // Make buttons take equal width
+    margin: 0 5px; // Adjust spacing between buttons
+    background-color: #4caf50; // Green background
+    color: white; // White text
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .unsubscribe-btn {
+    background-color: #f44336; // Red
+    color: white;
+  }
+
+  input[type='email'] {
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 16px;
+  }
+  button {
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 4px;
+    background: #5372f0;
+  }
+  .location-btn {
+    background: #6c757d;
+  }
+  .separator {
+    height: 1px;
+    width: 100%;
+    margin: 25px 0;
+    background: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .separator::before {
+    content: 'or';
+    color: #6c757d;
+    font-size: 1.18rem;
+    padding: 0 15px;
+    margin-top: -4px;
+    background: #e3f2fd;
+  }
+}
+
+@media (max-width: 1200px) {
+  .weather-input {
+    width: 450px;
+  }
+}
+@media (max-width: 950px) {
+  .weather-input {
+    width: 100%;
+  }
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
