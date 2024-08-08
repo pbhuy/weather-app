@@ -11,14 +11,14 @@ services:
       - PORT=4000
       - CLIENT_URL=https://weather-app-alpha-two-82.vercel.app
       - MONGODB_URL=mongodb://mongodb:27017/weather-app
-      - JWT_SECRET=zElLjmyCKgfiG3YGgLCo4aURuKLBkcq7
+      - JWT_SECRET=<<key>>
       - JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=10
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=587
-      - SMTP_USERNAME=pbhuy0909@gmail.com
-      - SMTP_PASSWORD=ozsdvzvzpkrworqn
-      - EMAIL_FROM=pbhuy0909@gmail.com
-      - WEATHER_API_KEY=b35bda156e734603906133912240508
+      - SMTP_USERNAME=<<email>>
+      - SMTP_PASSWORD=<key>>
+      - EMAIL_FROM=<<email>>
+      - WEATHER_API_KEY=<key>>
       - BASE_WEATHER_API_URL=https://api.weatherapi.com/v1
     depends_on:
       - mongodb
