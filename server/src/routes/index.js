@@ -1,7 +1,7 @@
 const express = require('express');
 
-const userRoute = require('../routes/user.route');
 const authRoute = require('../routes/auth.route');
+const weatherRoute = require('../routes/weather.route');
 
 const router = express.Router();
 
@@ -11,8 +11,8 @@ const routes = [
     route: authRoute,
   },
   {
-    path: '/users',
-    route: userRoute,
+    path: '/weather',
+    route: weatherRoute,
   },
 ];
 

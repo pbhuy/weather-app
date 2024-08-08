@@ -3,13 +3,8 @@ const { Schema } = mongoose;
 const validator = require('validator');
 const { toJSON } = require('./plugins');
 
-const userSchema = new Schema(
+const emailSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     email: {
       type: String,
       required: true,
@@ -22,17 +17,11 @@ const userSchema = new Schema(
         }
       },
     },
-    password: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    role: {
-      type: String,
-      enum: ['USER', 'ADMIN'],
-      default: 'USER',
-    },
     isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isSubscribed: {
       type: Boolean,
       default: false,
     },
@@ -42,8 +31,8 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.plugin(toJSON);
+emailSchema.plugin(toJSON);
 
-const User = mongoose.model('User', userSchema);
+const Email = mongoose.model('Email', emailSchema);
 
-module.exports = User;
+module.exports = Email;

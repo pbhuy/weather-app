@@ -1,9 +1,10 @@
 const express = require('express');
 
+const { authController } = require('../controllers');
+
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.send('auth route');
-});
+router.post('/send-verification-email', authController.sendVerificationEmail);
+router.post('/verify-email', authController.verifyEmail);
 
 module.exports = router;
