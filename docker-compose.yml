@@ -1,19 +1,5 @@
 version: '3'
 services:
-  client:
-    container_name: client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - '3000:3000'
-    environment:
-      - VITE_API_BASE_URL=http://localhost:4000/api
-    depends_on:
-      - server
-    networks:
-      - weather-app
-
   server:
     container_name: server
     build:
@@ -23,7 +9,7 @@ services:
       - '4000:4000'
     environment:
       - PORT=4000
-      - CLIENT_URL=http://localhost:3000
+      - CLIENT_URL=https://weather-app-alpha-two-82.vercel.app
       - MONGODB_URL=mongodb://mongodb:27017/weather-app
       - JWT_SECRET=zElLjmyCKgfiG3YGgLCo4aURuKLBkcq7
       - JWT_VERIFY_EMAIL_EXPIRATION_MINUTES=10
@@ -43,7 +29,7 @@ services:
     image: mongo:6-jammy
     container_name: mongodb
     ports:
-      - '27018:27017'
+      - '27017:27017'
     volumes:
       - mongo_data:/data/db
     networks:

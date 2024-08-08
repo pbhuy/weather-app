@@ -60,12 +60,14 @@ const subscribeWeatherForecast = async (req, res, next) => {
   try {
     const existedEmail = await Email.findOne({ email });
     if (!existedEmail) {
-      return next(new AppError(httpStatus.NOT_FOUND, 'Email address not found'));
+      const newEmail = new Email({ email });
+      await newEmail.save();
+      return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
+    } else {
+      if (!existedEmail.isVerified) return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
+      else if (existedEmail.isVerified === true && existedEmail.isSubscribed === false)
+        return next(new AppError(httpStatus.BAD_REQUEST, 'Email is not currently subscribed to weather forecasts'));
     }
-    if (!existedEmail.isVerified) return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
-    if (existedEmail.isSubscribed)
-      return next(new AppError(httpStatus.BAD_REQUEST, 'Email is already subscribed to weather forecasts'));
-
     await Email.findOneAndUpdate({ email }, { isSubscribed: true });
 
     // Schedule daily weather notifications
@@ -88,11 +90,14 @@ const unsubscribeWeatherForecast = async (req, res, next) => {
   try {
     const existedEmail = await Email.findOne({ email });
     if (!existedEmail) {
-      return next(new AppError(httpStatus.NOT_FOUND, 'Email address not found'));
+      const newEmail = new Email({ email });
+      await newEmail.save();
+      return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
+    } else {
+      if (!existedEmail.isVerified) return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
+      else if (existedEmail.isVerified === true && existedEmail.isSubscribed === true)
+        return next(new AppError(httpStatus.BAD_REQUEST, 'Email is not currently subscribed to weather forecasts'));
     }
-    if (!existedEmail.isVerified) return next(new AppError(httpStatus.BAD_REQUEST, 'Email address is not verified'));
-    if (!existedEmail.isSubscribed)
-      return next(new AppError(httpStatus.BAD_REQUEST, 'Email is not currently subscribed to weather forecasts'));
 
     await Email.findOneAndUpdate({ email }, { isSubscribed: false });
 
